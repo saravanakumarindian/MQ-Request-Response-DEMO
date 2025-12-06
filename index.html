@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IBM MQ Cloud Demo</title>
+</head>
+<body>
+<h2>IBM MQ Request-Response Demo</h2>
+<textarea id="msg" rows="5" cols="50" placeholder="Enter your message..."></textarea><br><br>
+<button onclick="sendMsg()">Send</button>
+<p id="result"></p>
+<script>
+async function sendMsg() {
+    const message = document.getElementById("msg").value;
+    const response = await fetch("YOUR_CODE_ENGINE_URL/send", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message})
+    });
+    const data = await response.json();
+    document.getElementById("result").innerHTML = 
+        "<b>Response:</b> " + (data.response || data.error);
+}
+</script>
+</body>
+</html>
